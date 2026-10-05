@@ -1,0 +1,184 @@
+/* ---------- Tokens ---------- */
+:root {
+    --bg: #e9eef3;
+    --surface: #ffffff;
+    --ink: #17212b;
+    --muted: #5a6877;
+    --line: #c9d3dd;
+    --accent: #1f4fd8;
+    --accent-dark: #173ca8;
+    --ok-bg: #e4f5ea;
+    --ok-ink: #14633a;
+    --err-bg: #fbe9e7;
+    --err-ink: #9b2316;
+    --radius: 10px;
+    --font: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px 16px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+/* ---------- Layout ---------- */
+.contact {
+    width: 100%;
+    max-width: 460px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 36px 32px 32px;
+    box-shadow: 0 12px 32px rgba(23, 33, 43, 0.08);
+}
+
+.contact h1 {
+    margin: 0 0 6px;
+    font-size: 1.9rem;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.contact .intro {
+    margin: 0 0 28px;
+    color: var(--muted);
+}
+
+/* ---------- Form ---------- */
+.field {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    color: var(--ink);
+    background: #f7f9fb;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    transition: border-color 0.15s, background-color 0.15s;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #8896a5;
+}
+
+input:hover,
+textarea:hover {
+    border-color: #9fb0c1;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(31, 79, 216, 0.28);
+    outline-offset: 1px;
+    border-color: var(--accent);
+    background: #fff;
+}
+
+textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+/* ---------- Button ---------- */
+button {
+    width: 100%;
+    margin-top: 6px;
+    padding: 13px 18px;
+    font: inherit;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.15s, transform 0.1s;
+}
+
+button:hover {
+    background: var(--accent-dark);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+button:focus-visible {
+    outline: 3px solid rgba(31, 79, 216, 0.4);
+    outline-offset: 2px;
+}
+
+button:disabled {
+    background: #8fa3d6;
+    cursor: not-allowed;
+}
+
+/* ---------- Status message ---------- */
+.status {
+    margin: 18px 0 0;
+    padding: 0;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.status:not(:empty) {
+    padding: 12px 14px;
+}
+
+.status.success {
+    background: var(--ok-bg);
+    color: var(--ok-ink);
+}
+
+.status.error {
+    background: var(--err-bg);
+    color: var(--err-ink);
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 480px) {
+    .contact {
+        padding: 28px 20px 24px;
+    }
+
+    .contact h1 {
+        font-size: 1.6rem;
+    }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
