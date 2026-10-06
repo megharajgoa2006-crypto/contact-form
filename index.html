@@ -40,5 +40,42 @@
 
     <script>
         const form = document.getElementById("contactForm");
-        const status = document.getElementById("status");
+        const statusBox = document.getElementById("status");
         const btn = document.getElementById("submitBtn");
+
+        function show(text, type) {
+            statusBox.textContent = text;
+            statusBox.className = "status " + type;
+        }
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const data = Object.fromEntries(new FormData(form));
+            btn.disabled = true;
+            btn.textContent = "Sending...";
+            statusBox.textContent = "";
+            statusBox.className = "status";
+
+            try {
+                const res = await fetch("/api/submit", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+                if (res.ok) {
+                    show("Message sent. Your data was saved successfully.", "success");
+                    form.reset();
+                } else {
+                    show("Could not save your message. Please try again.", "error");
+                }
+            } catch (err) {
+                show("Network error. Check your connection and try again.", "error");
+            }
+
+            btn.disabled = false;
+            btn.textContent = "Send message";
+        });
+    </script>
+</body>
+
+</html>
